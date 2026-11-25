@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="uom_category_pack" model="uom.category">
+        <field name="name">Pack (Uji MTJ)</field>
+    </record>
+    <record id="uom_pack" model="uom.uom">
+        <field name="name">pack</field>
+        <field name="category_id" ref="uom_category_pack"/>
+        <field name="uom_type">reference</field>
+        <field name="rounding">0.01</field>
+    </record>
+    <record id="uom_category_roll" model="uom.category">
+        <field name="name">Roll (Uji MTJ)</field>
+    </record>
+    <record id="uom_roll" model="uom.uom">
+        <field name="name">roll</field>
+        <field name="category_id" ref="uom_category_roll"/>
+        <field name="uom_type">reference</field>
+        <field name="rounding">0.01</field>
+    </record>
+    <record id="uom_pcs" model="uom.uom">
+        <field name="name">pcs</field>
+        <field name="category_id" ref="uom.product_uom_categ_unit"/>
+        <field name="uom_type">bigger</field>
+        <field name="factor">1</field>
+        <field name="rounding">0.01</field>
+    </record>
+
+    <record id="product_wb_01" model="mtj.product">
+        <field name="sku">WB-01</field>
+        <field name="name">Webbing Uji</field>
+        <field name="uom_id" ref="uom_roll"/>
+        <field name="sample_price">100000</field>
+    </record>
+    <record id="product_bk_01" model="mtj.product">
+        <field name="sku">BK-01</field>
+        <field name="name">Buckle Uji</field>
+        <field name="uom_id" ref="uom_pcs"/>
+        <field name="sample_price">2500</field>
+    </record>
+    <record id="product_zp_01" model="mtj.product">
+        <field name="sku">ZP-01</field>
+        <field name="name">Zipper Uji</field>
+        <field name="uom_id" ref="uom_pcs"/>
+        <field name="sample_price">5000</field>
+    </record>
+
+    <record id="mapping_zp_01_pack" model="mtj.uom.mapping">
+        <field name="source">marketplace</field>
+        <field name="source_code">ZP-01</field>
+        <field name="source_uom_id" ref="uom_pack"/>
+        <field name="product_id" ref="product_zp_01"/>
+        <field name="reference_uom_id" ref="uom_pcs"/>
+        <field name="factor">10</field>
+        <field name="approval_basis">Persetujuan sintetis untuk skenario koreksi persediaan M5.</field>
+        <field name="active" eval="False"/>
+    </record>
+</odoo>

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_mtj_product_tree" model="ir.ui.view">
+        <field name="name">mtj.product.tree</field>
+        <field name="model">mtj.product</field>
+        <field name="arch" type="xml">
+            <tree decoration-muted="not active" delete="false">
+                <field name="sku"/>
+                <field name="name"/>
+                <field name="variant"/>
+                <field name="uom_id"/>
+                <field name="sample_price"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_mtj_product_form" model="ir.ui.view">
+        <field name="name">mtj.product.form</field>
+        <field name="model">mtj.product</field>
+        <field name="arch" type="xml">
+            <form delete="false" duplicate="false">
+                <sheet>
+                    <group>
+                        <group string="Identitas Produk">
+                            <field name="sku"/>
+                            <field name="name"/>
+                            <field name="variant"/>
+                        </group>
+                        <group string="Data Acuan">
+                            <field name="uom_id" options="{'no_create': True, 'no_open': True}"/>
+                            <field name="sample_price"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="view_mtj_product_search" model="ir.ui.view">
+        <field name="name">mtj.product.search</field>
+        <field name="model">mtj.product</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="sku"/>
+                <field name="name"/>
+                <filter name="inactive" string="Nonaktif" domain="[('active', '=', False)]"/>
+            </search>
+        </field>
+    </record>
+    <record id="action_mtj_products" model="ir.actions.act_window">
+        <field name="name">Produk</field>
+        <field name="res_model">mtj.product</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="view_mtj_mapping_tree" model="ir.ui.view">
+        <field name="name">mtj.uom.mapping.tree</field>
+        <field name="model">mtj.uom.mapping</field>
+        <field name="arch" type="xml">
+            <tree decoration-muted="not active" delete="false">
+                <field name="source"/>
+                <field name="source_code"/>
+                <field name="source_uom_id"/>
+                <field name="product_id"/>
+                <field name="reference_uom_id"/>
+                <field name="factor"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_mtj_mapping_form" model="ir.ui.view">
+        <field name="name">mtj.uom.mapping.form</field>
+        <field name="model">mtj.uom.mapping</field>
+        <field name="arch" type="xml">
+            <form delete="false" duplicate="false">
+                <sheet>
+                    <group>
+                        <group string="Sumber">
+                            <field name="source"/>
+                            <field name="source_code"/>
+                            <field name="source_uom_id" options="{'no_create': True, 'no_open': True}"/>
+                        </group>
+                        <group string="Produk dan Konversi">
+                            <field name="product_id" options="{'no_create': True}" domain="[('active', '=', True)]"/>
+                            <field name="reference_uom_id" options="{'no_create': True, 'no_open': True}"/>
+                            <field name="factor"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="approval_basis"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="view_mtj_mapping_search" model="ir.ui.view">
+        <field name="name">mtj.uom.mapping.search</field>
+        <field name="model">mtj.uom.mapping</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="source"/>
+                <field name="source_code"/>
+                <field name="product_id"/>
+                <filter name="inactive" string="Nonaktif" domain="[('active', '=', False)]"/>
+            </search>
+        </field>
+    </record>
+    <record id="action_mtj_mappings" model="ir.actions.act_window">
+        <field name="name">Pemetaan Satuan</field>
+        <field name="res_model">mtj.uom.mapping</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="view_mtj_product_reference_tree" model="ir.ui.view">
+        <field name="name">mtj.product.reference.tree</field>
+        <field name="model">mtj.product</field>
+        <field name="arch" type="xml">
+            <tree create="false" edit="false" delete="false" import="false">
+                <field name="sku"/>
+                <field name="name"/>
+                <field name="variant"/>
+                <field name="uom_id"/>
+            </tree>
+        </field>
+    </record>
+    <record id="action_mtj_product_reference" model="ir.actions.act_window">
+        <field name="name">Referensi Produk</field>
+        <field name="res_model">mtj.product</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_mtj_product_reference_tree"/>
+        <field name="domain">[('active', '=', True)]</field>
+    </record>
+
+    <menuitem id="menu_mtj_product_reference" name="Referensi Produk" parent="menu_mtj_root"
+              action="action_mtj_product_reference" groups="group_mtj_user" sequence="5"/>
+    <menuitem id="menu_mtj_catalog" name="Produk dan Pemetaan Satuan" parent="menu_mtj_root"
+              groups="group_mtj_technical_admin" sequence="10"/>
+    <menuitem id="menu_mtj_products" name="Produk" parent="menu_mtj_catalog"
+              action="action_mtj_products" groups="group_mtj_technical_admin" sequence="10"/>
+    <menuitem id="menu_mtj_mappings" name="Pemetaan Satuan" parent="menu_mtj_catalog"
+              action="action_mtj_mappings" groups="group_mtj_technical_admin" sequence="20"/>
+</odoo>
