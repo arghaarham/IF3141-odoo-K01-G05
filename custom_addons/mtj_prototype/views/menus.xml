@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_mtj_root" name="Toko Maju Jaya" groups="group_mtj_user" sequence="30"/>
+</odoo>

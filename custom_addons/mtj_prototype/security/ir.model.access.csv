@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mtj_account_admin,mtj.account.assignment admin,model_mtj_account_assignment,group_mtj_technical_admin,1,1,1,0
+access_mtj_password_admin,mtj.account.password admin,model_mtj_account_password,group_mtj_technical_admin,1,0,1,0
+access_mtj_audit_admin,mtj.audit.event admin,model_mtj_audit_event,group_mtj_technical_admin,1,0,0,0
+access_mtj_product_user,mtj.product user,model_mtj_product,group_mtj_user,1,0,0,0
+access_mtj_product_admin,mtj.product admin,model_mtj_product,group_mtj_technical_admin,1,1,1,0
+access_mtj_mapping_stock,mtj.uom.mapping operator,model_mtj_uom_mapping,group_mtj_stock_operator,1,0,0,0
+access_mtj_mapping_reviewer,mtj.uom.mapping stock reviewer,model_mtj_uom_mapping,group_mtj_reviewer_stock,1,0,0,0
+access_mtj_mapping_admin,mtj.uom.mapping admin,model_mtj_uom_mapping,group_mtj_technical_admin,1,1,1,0

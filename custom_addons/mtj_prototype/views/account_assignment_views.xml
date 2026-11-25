@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_mtj_account_tree" model="ir.ui.view">
+        <field name="name">mtj.account.assignment.tree</field>
+        <field name="model">mtj.account.assignment</field>
+        <field name="arch" type="xml">
+            <tree decoration-muted="not active" delete="false">
+                <field name="name"/>
+                <field name="login"/>
+                <field name="role"/>
+                <field name="scope"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_mtj_account_form" model="ir.ui.view">
+        <field name="name">mtj.account.assignment.form</field>
+        <field name="model">mtj.account.assignment</field>
+        <field name="arch" type="xml">
+            <form delete="false" duplicate="false">
+                <header>
+                    <button name="action_set_password" type="object" string="Atur Kata Sandi"/>
+                    <button name="action_view_audit" type="object" string="Lihat Riwayat"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group string="Identitas Akun Uji">
+                            <field name="name" required="1"/>
+                            <field name="login" required="1"/>
+                            <field name="active"/>
+                        </group>
+                        <group string="Penugasan">
+                            <field name="role"/>
+                            <field name="scope"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_mtj_account_search" model="ir.ui.view">
+        <field name="name">mtj.account.assignment.search</field>
+        <field name="model">mtj.account.assignment</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="login"/>
+                <field name="role"/>
+                <field name="scope"/>
+                <filter name="inactive" string="Nonaktif" domain="[('active', '=', False)]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_mtj_account_password_form" model="ir.ui.view">
+        <field name="name">mtj.account.password.form</field>
+        <field name="model">mtj.account.password</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="assignment_id" readonly="1" force_save="1"/>
+                    <field name="password" password="True" required="1"/>
+                </group>
+                <footer>
+                    <button special="save" string="Simpan Kata Sandi" class="btn-primary"/>
+                    <button special="cancel" string="Batal" class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_mtj_account_audit_tree" model="ir.ui.view">
+        <field name="name">mtj.audit.event.account.tree</field>
+        <field name="model">mtj.audit.event</field>
+        <field name="arch" type="xml">
+            <tree create="false" edit="false" delete="false">
+                <field name="occurred_at"/>
+                <field name="actor_id"/>
+                <field name="action"/>
+                <field name="old_values"/>
+                <field name="new_values"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_mtj_account_audit" model="ir.actions.act_window">
+        <field name="name">Riwayat Penugasan</field>
+        <field name="res_model">mtj.audit.event</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_mtj_account_audit_tree"/>
+        <field name="domain">[('res_model', '=', 'mtj.account.assignment')]</field>
+    </record>
+
+    <record id="action_mtj_accounts" model="ir.actions.act_window">
+        <field name="name">Akun dan Penugasan</field>
+        <field name="res_model">mtj.account.assignment</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'default_active': True}</field>
+    </record>
+
+    <menuitem id="menu_mtj_accounts" name="Akun dan Penugasan" parent="menu_mtj_root"
+              action="action_mtj_accounts" groups="group_mtj_technical_admin" sequence="30"/>
+</odoo>

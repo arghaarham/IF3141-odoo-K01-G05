@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="account_order_recorder" model="mtj.account.assignment">
+        <field name="name">Pencatat Pesanan Uji</field>
+        <field name="login">mtj.pencatat</field>
+        <field name="role">a01</field>
+        <field name="scope">order</field>
+    </record>
+    <record id="account_payment_reviewer" model="mtj.account.assignment">
+        <field name="name">Pemeriksa Pembayaran Uji</field>
+        <field name="login">mtj.pembayaran</field>
+        <field name="role">a02</field>
+        <field name="scope">order</field>
+    </record>
+    <record id="account_fulfillment" model="mtj.account.assignment">
+        <field name="name">Petugas Pemenuhan Uji</field>
+        <field name="login">mtj.pemenuhan</field>
+        <field name="role">a03</field>
+        <field name="scope">order</field>
+    </record>
+    <record id="account_stock_operator" model="mtj.account.assignment">
+        <field name="name">Petugas Persediaan Uji</field>
+        <field name="login">mtj.persediaan</field>
+        <field name="role">a04</field>
+        <field name="scope">stock</field>
+    </record>
+    <record id="account_reviewer_order" model="mtj.account.assignment">
+        <field name="name">Peninjau Pesanan Uji</field>
+        <field name="login">mtj.peninjau.pesanan</field>
+        <field name="role">a05</field>
+        <field name="scope">order</field>
+    </record>
+    <record id="account_reviewer_stock" model="mtj.account.assignment">
+        <field name="name">Peninjau Persediaan Uji</field>
+        <field name="login">mtj.peninjau.persediaan</field>
+        <field name="role">a05</field>
+        <field name="scope">stock</field>
+    </record>
+    <record id="account_technical_admin" model="mtj.account.assignment">
+        <field name="name">Administrator Teknis Uji</field>
+        <field name="login">mtj.admin.uji</field>
+        <field name="role">a06</field>
+        <field name="scope">technical</field>
+    </record>
+</odoo>

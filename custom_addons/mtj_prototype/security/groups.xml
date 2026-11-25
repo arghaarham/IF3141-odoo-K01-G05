@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="module_category_mtj" model="ir.module.category">
+        <field name="name">Toko Maju Jaya</field>
+    </record>
+
+    <record id="group_mtj_user" model="res.groups">
+        <field name="name">Pengguna Prototipe</field>
+        <field name="category_id" ref="module_category_mtj"/>
+        <field name="implied_ids" eval="[Command.link(ref('base.group_user'))]"/>
+    </record>
+    <record id="group_mtj_order_recorder" model="res.groups">
+        <field name="name">A-01 · Pencatat Pesanan</field>
+        <field name="category_id" ref="module_category_mtj"/>
+        <field name="implied_ids" eval="[Command.link(ref('group_mtj_user'))]"/>
+    </record>
+    <record id="group_mtj_payment_reviewer" model="res.groups">
+        <field name="name">A-02 · Pemeriksa Pembayaran</field>
+        <field name="category_id" ref="module_category_mtj"/>
+        <field name="implied_ids" eval="[Command.link(ref('group_mtj_user'))]"/>
+    </record>
+    <record id="group_mtj_fulfillment" model="res.groups">
+        <field name="name">A-03 · Petugas Pemenuhan</field>
+        <field name="category_id" ref="module_category_mtj"/>
+        <field name="implied_ids" eval="[Command.link(ref('group_mtj_user'))]"/>
+    </record>
+    <record id="group_mtj_stock_operator" model="res.groups">
+        <field name="name">A-04 · Petugas Persediaan</field>
+        <field name="category_id" ref="module_category_mtj"/>
+        <field name="implied_ids" eval="[Command.link(ref('group_mtj_user'))]"/>
+    </record>
+    <record id="group_mtj_reviewer" model="res.groups">
+        <field name="name">A-05 · Koordinator atau Peninjau</field>
+        <field name="category_id" ref="module_category_mtj"/>
+        <field name="implied_ids" eval="[Command.link(ref('group_mtj_user'))]"/>
+    </record>
+    <record id="group_mtj_reviewer_order" model="res.groups">
+        <field name="name">A-05 · Lingkup Pesanan</field>
+        <field name="category_id" ref="module_category_mtj"/>
+        <field name="implied_ids" eval="[Command.link(ref('group_mtj_reviewer'))]"/>
+    </record>
+    <record id="group_mtj_reviewer_stock" model="res.groups">
+        <field name="name">A-05 · Lingkup Persediaan</field>
+        <field name="category_id" ref="module_category_mtj"/>
+        <field name="implied_ids" eval="[Command.link(ref('group_mtj_reviewer'))]"/>
+    </record>
+    <record id="group_mtj_technical_admin" model="res.groups">
+        <field name="name">A-06 · Administrator Teknis Uji</field>
+        <field name="category_id" ref="module_category_mtj"/>
+        <field name="implied_ids" eval="[Command.link(ref('group_mtj_user'))]"/>
+        <field name="users" eval="[Command.link(ref('base.user_admin'))]"/>
+    </record>
+</odoo>

@@ -1,0 +1,20 @@
+{
+    "name": "Toko Maju Jaya",
+    "summary": "Prototipe IF3141 K01 G05 dengan data sintetis",
+    "version": "17.0.1.0.0",
+    "license": "LGPL-3",
+    "author": "IF3141 K01 G05",
+    "category": "Operations",
+    "depends": ["base", "web", "uom"],
+    "application": True,
+    "data": [
+        "security/groups.xml",
+        "security/ir.model.access.csv",
+        "security/account_rules.xml",
+        "views/menus.xml",
+        "views/account_assignment_views.xml",
+        "views/master_data_views.xml",
+        "data/test_accounts.xml",
+        "data/master_data.xml",
+    ],
+}
