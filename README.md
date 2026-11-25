@@ -2,6 +2,8 @@
 
 Template tugas besar IF3141: Odoo 17 + PostgreSQL 16 lewat Docker. Yang Anda buat adalah **modul (addon)** Odoo. Contoh modul yang benar ada di `custom_addons/starter_cats`.
 
+Implementasi Toko Maju Jaya ada di [`custom_addons/mtj_prototype`](custom_addons/mtj_prototype/README.md). Panduannya mencakup instalasi, akun uji, katalog, pengujian, dan kontrak antarpaket.
+
 ## Prasyarat
 
 - Docker (Docker Desktop di Windows/Mac) dan Git
